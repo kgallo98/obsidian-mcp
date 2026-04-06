@@ -8,3 +8,10 @@ __pycache__/
 *.log
 .claude/
 CLAUDE.md
+
+# Personal knowledge (private, never commit)
+personal/
+
+# OS files
+.DS_Store
+Thumbs.db
