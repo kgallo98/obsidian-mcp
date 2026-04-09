@@ -338,6 +338,14 @@ def write_note(path: str, content: str) -> str:
 
     Returns:
         Confirmation message with the note path.
+
+    Security note (S38 P4.3 / LO-04): `path` is used as a CouchDB document
+    ID (NOT a filesystem path). Strings like "../../etc/passwd" simply create
+    a doc with that name and are not exploitable as path traversal — the
+    URL-encoding in `_couch_put` neutralises special characters. **If this
+    backend ever moves to a real filesystem, ADD path validation here**
+    (reject `..`, absolute paths, anything outside the vault root) before
+    persisting.
     """
     if not path.endswith(".md"):
         path += ".md"
